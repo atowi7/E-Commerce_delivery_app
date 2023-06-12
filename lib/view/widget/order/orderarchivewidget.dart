@@ -5,7 +5,6 @@ import 'package:ecommerce_delivery_app/data/model/ordermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:rating_dialog/rating_dialog.dart';
 
 class OrderArchiveWedget extends GetView<OrdersArchiveController> {
   final OrderModel orderModel;

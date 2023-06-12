@@ -1,3 +1,4 @@
+import 'package:ecommerce_delivery_app/controller/tracking_controller.dart';
 import 'package:ecommerce_delivery_app/core/class/status_request.dart';
 import 'package:ecommerce_delivery_app/core/function/handle_data.dart';
 import 'package:ecommerce_delivery_app/core/service/services.dart';
@@ -65,7 +66,8 @@ class OrdersPendingController extends BaseOrdersPendingController {
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
         Get.snackbar('Warring', 'The ordre is accepted');
-        refreshPage();
+        TrackingController trackingController = Get.put(TrackingController());
+        //refreshPage();
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }

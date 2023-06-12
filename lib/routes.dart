@@ -4,10 +4,11 @@ import 'package:ecommerce_delivery_app/view/screen/auth/login_screen.dart';
 import 'package:ecommerce_delivery_app/view/screen/auth/signup_screen.dart';
 import 'package:ecommerce_delivery_app/view/screen/auth/signup_verfication_screen.dart';
 import 'package:ecommerce_delivery_app/view/screen/auth/sucesssignupscreen.dart';
-import 'package:ecommerce_delivery_app/view/screen/homescreen.dart';
+import 'package:ecommerce_delivery_app/view/screen/home_screen.dart';
 import 'package:ecommerce_delivery_app/view/screen/language_screen.dart';
 import 'package:ecommerce_delivery_app/view/screen/orders/ordersarchive.dart';
 import 'package:ecommerce_delivery_app/view/screen/orders/ordersdetails.dart';
+import 'package:ecommerce_delivery_app/view/screen/orders/orderstracking.dart';
 
 import 'package:get/get.dart';
 
@@ -52,11 +53,15 @@ List<GetPage<dynamic>>? routes = [
     page: () => const HomeScreen(),
   ),
   GetPage(
+    name: AppRoute.ordersArchive,
+    page: () => const OrdersArchiveScreen(),
+  ),
+  GetPage(
     name: AppRoute.ordersDetails,
     page: () => const OrderDetailsScreen(),
   ),
   GetPage(
-    name: AppRoute.ordersArchive,
-    page: () => const OrdersArchiveScreen(),
+    name: AppRoute.ordersTracking,
+    page: () => const OrderTrackingScreen(),
   ),
 ];

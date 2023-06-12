@@ -1,6 +1,8 @@
 import 'package:ecommerce_delivery_app/controller/orders/orderdetials_controller.dart';
 import 'package:ecommerce_delivery_app/core/constant/color.dart';
 import 'package:ecommerce_delivery_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_delivery_app/core/constant/route.dart';
+import 'package:ecommerce_delivery_app/view/widget/auth/custombutton.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +12,7 @@ class OrderDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    OrderDetialsController controller = Get.put(OrderDetialsController());
+    Get.put(OrderDetialsController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Order Detail'),
@@ -123,6 +125,18 @@ class OrderDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+              const SizedBox(
+                height: 10,
+              ),
+              if (controller.orderModel.ordersType == '0' &&
+                  controller.orderModel.ordersStatus == '3')
+                CustomButton(
+                    title: 'Tracking',
+                    onPressed: () {
+                      Get.toNamed(AppRoute.ordersTracking, arguments: {
+                        'orderModel': controller.orderModel,
+                      });
+                    }),
             ],
           ),
         );

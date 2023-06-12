@@ -43,7 +43,7 @@ class SearchController extends BaseSearchController {
 
     if (StatusRequest.sucess == statusRequest) {
       if (response['status'] == 'sucess') {
-        List data = response['data'];
+        //List data = response['data'];
 
         update();
       } else {
