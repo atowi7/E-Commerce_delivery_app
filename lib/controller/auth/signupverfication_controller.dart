@@ -5,7 +5,7 @@ import 'package:ecommerce_delivery_app/data/datasource/remote/auth/signupverific
 import 'package:get/get.dart';
 
 abstract class BaseSignupVerficationController extends GetxController {
-  openSucess(String verifyCode);
+  opensuccess(String verifyCode);
   resend();
 }
 
@@ -23,20 +23,20 @@ class SignupVerficationController extends BaseSignupVerficationController {
   }
 
   @override
-  openSucess(verifyCode) async {
+  opensuccess(verifyCode) async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await signupVerificationData.postData(email!, verifyCode);
     statusRequest = handleData(response);
-    if (statusRequest == StatusRequest.sucess) {
-      if (response['status'] == 'sucess') {
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
         Get.offNamed(AppRoute.successSignup);
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'VCODE ERROR');
+        Get.defaultDialog(title: '88'.tr, middleText: '97'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+      Get.defaultDialog(title: '88'.tr, middleText: '89'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
     update();
@@ -46,15 +46,15 @@ class SignupVerficationController extends BaseSignupVerficationController {
   resend() async {
     var response = await signupVerificationData.resend(email!);
     statusRequest = handleData(response);
-    if (statusRequest == StatusRequest.sucess) {
-      if (response['status'] == 'sucess') {
-        Get.defaultDialog(title: 'Warring', middleText: 'VCODE is send');
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
+        Get.defaultDialog(title: '30'.tr, middleText: '114'.tr);
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'VCODE is not send');
+        Get.defaultDialog(title: '88'.tr, middleText: '115'.tr);
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+      Get.defaultDialog(title: '88'.tr, middleText: '89'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
     update();

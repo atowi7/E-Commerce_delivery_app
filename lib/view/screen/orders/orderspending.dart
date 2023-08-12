@@ -10,16 +10,18 @@ class OrdersPendingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(OrdersPendingController());
-    return  GetBuilder<OrdersPendingController>(builder: (controller) {
-        return HandlingDataView(
-          statusRequest: controller.statusRequest,
-          widget: ListView.builder(
+    return GetBuilder<OrdersPendingController>(builder: (controller) {
+      return HandlingDataView(
+        statusRequest: controller.statusRequest,
+        widget: RefreshIndicator(
+          onRefresh: () => controller.viewOrders(),
+          child: ListView.builder(
             itemCount: controller.dataList.length,
             itemBuilder: (context, i) =>
                 OrderPendingWedget(orderModel: controller.dataList[i]),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }

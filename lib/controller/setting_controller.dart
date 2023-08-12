@@ -2,43 +2,69 @@ import 'package:ecommerce_delivery_app/core/constant/route.dart';
 import 'package:ecommerce_delivery_app/core/service/services.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseSettingController extends GetxController {
+  displayNotification(bool val);
   contactUs();
   logout();
 }
 
 class SettingController extends BaseSettingController {
-  List sections = [
-    {
-      'title': 'About us',
-      'icon': Icons.details_outlined,
-      'onpress': () {},
-    },
-    {
-      'title': 'Contact us',
-      'icon': Icons.contact_page_rounded,
-      'onpress': () {},
-    },
-    {
-      'title': 'Archive',
-      'icon': Icons.archive_outlined,
-      'onpress': () {},
-    },
-    {
-      'title': 'Display notifications',
-      'icon': Icons.notifications_paused_outlined,
-      'onpress': () {},
-    },
-    {
-      'title': 'Logout',
-      'icon': Icons.logout_outlined,
-      'onpress': () {},
-    }
-  ];
+  late String deliveryId;
+  late String deliveryName;
+  late String deliveryImage;
+
+  bool value = false;
+  // List sections = [
+  //   {
+  //     'title': '118'.tr,
+  //     'icon': Icons.details_outlined,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': ' 119'.tr,
+  //     'icon': Icons.contact_page_rounded,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '107'.tr,
+  //     'icon': Icons.archive_outlined,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '120'.tr,
+  //     'icon': Icons.notifications_paused_outlined,
+  //     'onpress': () {},
+  //   },
+  //   {
+  //     'title': '121'.tr,
+  //     'icon': Icons.logout_outlined,
+  //     'onpress': () {},
+  //   }
+  // ];
   AppServices appServices = Get.find();
+
+  @override
+  void onInit() {
+    deliveryId = appServices.sharedPreferences.getString('deliveryid')!;
+    deliveryName = appServices.sharedPreferences.getString('deliveryname')!;
+    deliveryImage = 'default';
+    super.onInit();
+  }
+
+  @override
+  displayNotification(val) {
+    value = val;
+
+    if (value == true) {
+      //  FirebaseMessaging.instance.subscribeToTopic('delivery$deliveryId');
+    } else {
+      // FirebaseMessaging.instance.unsubscribeFromTopic('delivery$deliveryId');
+    }
+
+    update();
+  }
 
   @override
   contactUs() {
@@ -63,10 +89,8 @@ class SettingController extends BaseSettingController {
 
   @override
   logout() {
-    String userid = appServices.sharedPreferences.getString('userid')!;
-
-    FirebaseMessaging.instance.unsubscribeFromTopic('users');
-    FirebaseMessaging.instance.unsubscribeFromTopic('user$userid');
+    FirebaseMessaging.instance.unsubscribeFromTopic('deliverys');
+    FirebaseMessaging.instance.unsubscribeFromTopic('delivery$deliveryId');
 
     appServices.sharedPreferences.clear();
     Get.offAllNamed(AppRoute.login);

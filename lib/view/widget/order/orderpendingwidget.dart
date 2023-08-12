@@ -18,44 +18,78 @@ class OrderPendingWedget extends GetView<OrdersPendingController> {
           Row(
             children: [
               Text(
-                'Order Number : ${orderModel.ordersId}',
-                style: Theme.of(context).textTheme.displayMedium,
+                '${'46'.tr} : ${orderModel.ordersId}',
+                style: Theme.of(context).textTheme.displayLarge,
               ),
               const Spacer(),
               Text(
                 Jiffy.parse(orderModel.ordersCreatedat!).fromNow(),
-                style: Theme.of(context).textTheme.displayMedium,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ],
           ),
-          const Divider(color: AppColor.blue),
-          Text('Order price : ${orderModel.ordersPrice}'),
-          Text('Order delivery price : ${orderModel.ordersDeliveryprice}\$'),
+          const Divider(color: AppColor.primaryColor, thickness: 2),
           Text(
-              'Order payment method : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}'),
+            '${'47'.tr} : ${orderModel.ordersPrice}',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          Text(
+            '${'48'.tr} : ${orderModel.ordersDeliveryprice}\$',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          Text(
+            '${'49'.tr} : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
           // Text(
           //     'Order delivery type : ${controller.getDeliveryType(orderModel.ordersType!)}'),
-          const Divider(color: AppColor.blue),
-          Text('Order total price : ${orderModel.ordersTotalprice}\$'),
-          const Divider(color: AppColor.blue),
+          const Divider(color: AppColor.primaryColor, thickness: 2),
+          Text(
+            '${'52'.tr} : ${orderModel.ordersTotalprice}\$',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const Divider(color: AppColor.primaryColor, thickness: 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               if (orderModel.ordersStatus == '2')
                 MaterialButton(
                     onPressed: () {
-                      controller.approveOrders(orderModel.ordersId!, orderModel.ordersUserid!);
+                      Get.defaultDialog(
+                        title: '30'.tr,
+                        titleStyle: Theme.of(context).textTheme.displayMedium,
+                        middleText: '31'.tr,
+                        middleTextStyle:
+                            Theme.of(context).textTheme.displaySmall,
+                        onConfirm: () {
+                          controller.approveOrders(
+                              orderModel.ordersId!, orderModel.ordersUserid!);
+                              Get.back();
+                        },
+                        confirmTextColor: AppColor.primaryColor,
+                        cancelTextColor: AppColor.primaryColor,
+                        buttonColor: AppColor.secondaryColor,
+                        onCancel: () {},
+                      );
                     },
-                    color: AppColor.blue,
-                    child: Text('Approval')),
+                    color: AppColor.primaryColor,
+                    splashColor: AppColor.secondaryColor,
+                    child: Text(
+                      '84'.tr,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    )),
               MaterialButton(
                   onPressed: () {
                     Get.toNamed(AppRoute.ordersDetails, arguments: {
                       'orderModel': orderModel,
                     });
                   },
-                  color: AppColor.blue,
-                  child: Text('Details')),
+                  color: AppColor.primaryColor,
+                  splashColor: AppColor.secondaryColor,
+                  child: Text(
+                    '53'.tr,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  )),
             ],
           ),
         ],

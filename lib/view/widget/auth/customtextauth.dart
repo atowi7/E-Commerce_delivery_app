@@ -13,15 +13,24 @@ class CustomTextAuth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(t1),
-        InkWell(
-          onTap: onTap,
-          child: Text(t2),
-        )
-      ],
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            t1,
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          InkWell(
+            onTap: onTap,
+            child: Text(
+              t2,
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

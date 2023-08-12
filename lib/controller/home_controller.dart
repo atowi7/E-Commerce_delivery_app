@@ -44,8 +44,8 @@ class HomeController extends BaseHomeController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         headings.addAll(response['headings']);
         cardTitle = headings[0]['heading_title'];
         cardDesc = headings[0]['heading_body'];

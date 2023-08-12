@@ -1,8 +1,11 @@
 import 'package:ecommerce_delivery_app/controller/auth/login_controller.dart';
 import 'package:ecommerce_delivery_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_delivery_app/core/constant/color.dart';
+import 'package:ecommerce_delivery_app/core/constant/imageassets.dart';
 import 'package:ecommerce_delivery_app/core/function/exitapp_alert.dart';
 import 'package:ecommerce_delivery_app/core/function/input_validation.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/custombutton.dart';
+import 'package:ecommerce_delivery_app/view/widget/auth/customsocialmedia.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/customtextauth.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/customtextbody.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/customtextform.dart';
@@ -18,10 +21,12 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(LoginController());
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('19'.tr),
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     '10'.tr,
+      //   ),
+      //   leading: const Icon(Icons.person_2_rounded),
+      // ),
       body: WillPopScope(
         onWillPop: () async {
           exitAppAlert();
@@ -32,54 +37,76 @@ class LoginScreen extends StatelessWidget {
               statusRequest: controller.statusRequest,
               widget: Form(
                 key: controller.formKey,
-                child: ListView(
-                  children: [
-                    const Logo(),
-                    CustomTextTitle(title: '19'.tr),
-                    CustomTextBody(title: '20'.tr),
-                    CustomTextForm(
-                      labelText: '16'.tr,
-                      hintText: '16'.tr,
-                      icon: Icons.email,
-                      isNumber: false,
-                      controller: controller.email,
-                      validator: (val) {
-                        return inputValidation('email', val!, 10, 50);
-                      },
-                    ),
-                    GetBuilder<LoginController>(builder: (controller) {
-                      return CustomTextForm(
-                        labelText: '18'.tr,
-                        hintText: '18'.tr,
-                        icon: Icons.lock,
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  child: ListView(
+                    children: [
+                      // const Logo(),
+                      const Icon(
+                        Icons.person_2_rounded,
+                        size: 200,
+                        color: AppColor.primaryColor,
+                      ),
+                      CustomTextTitle(title: '10'.tr),
+                      CustomTextBody(title: '11'.tr),
+                      CustomTextForm(
+                        labelText: '7'.tr,
+                        hintText: '7'.tr,
+                        icon: Icons.email,
                         isNumber: false,
-                        obscureText: controller.isPassHidden,
-                        controller: controller.pass,
+                        controller: controller.email,
                         validator: (val) {
-                          return inputValidation('password', val!, 10, 50);
+                          return inputValidation('email', val!, 10, 50);
                         },
-                        onTapIcon: controller.showPassword,
-                      );
-                    }),
-                    InkWell(
+                      ),
+                      GetBuilder<LoginController>(builder: (controller) {
+                        return CustomTextForm(
+                          labelText: '9'.tr,
+                          hintText: '9'.tr,
+                          icon: Icons.lock,
+                          isNumber: false,
+                          obscureText: controller.isPassHidden,
+                          controller: controller.pass,
+                          validator: (val) {
+                            return inputValidation('password', val!, 8, 20);
+                          },
+                          onTapIcon: controller.showPassword,
+                        );
+                      }),
+                      InkWell(
+                          onTap: () {
+                            controller.openForgerPassword();
+                          },
+                          child: Text('12'.tr,
+                              style: Theme.of(context).textTheme.displaySmall,
+                              textAlign: TextAlign.start)),
+                      CustomButton(
+                        title: '10'.tr,
+                        onPressed: () {
+                          controller.login();
+                        },
+                      ),
+                      CustomTextAuth(
+                        t1: '13'.tr,
+                        t2: '4'.tr,
                         onTap: () {
-                          controller.openForgerPassword();
+                          controller.openSignUp();
                         },
-                        child: Text('21'.tr, textAlign: TextAlign.end)),
-                    CustomButton(
-                      title: '19'.tr,
-                      onPressed: () {
-                        controller.login();
-                      },
-                    ),
-                    CustomTextAuth(
-                      t1: '22'.tr,
-                      t2: '13'.tr,
-                      onTap: () {
-                        controller.openSignUp();
-                      },
-                    ),
-                  ],
+                      ),
+                      Text(
+                        '125'.tr,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                      CustomSocialMedia(
+                        image: ImageAssets.googleLogo,
+                        text: '126'.tr,
+                        onTap: () {
+                          controller.signInWithGoogle();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ));
         }),

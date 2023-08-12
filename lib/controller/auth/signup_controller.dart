@@ -52,21 +52,21 @@ class SignupController extends BaseSignupController {
           userName.text, email.text, password.text, phone.text);
       statusRequest = handleData(response);
 
-      if (statusRequest == StatusRequest.sucess) {
-        if (response['status'] == 'sucess') {
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == 'success') {
           Get.offNamed(AppRoute.signupVerfication,
               arguments: {'email': email.text});
         } else {
           Get.defaultDialog(
-              title: 'ERROR', middleText: 'EMAIL OR PHONE EXISTS');
+              title: '88'.tr, middleText: '113'.tr);
           statusRequest = StatusRequest.noDatafailure;
         }
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
+        Get.defaultDialog(title: '88'.tr, middleText: '89'.tr);
         statusRequest = StatusRequest.serverFailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'Validation ERROR');
+      // Get.defaultDialog(title: '88'.tr, middleText: '95'.tr);
     }
     update();
   }

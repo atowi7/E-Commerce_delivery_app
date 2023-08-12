@@ -14,10 +14,13 @@ class OrdersAcceptedScreen extends StatelessWidget {
       body: GetBuilder<OrdersAcceptedController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
-          widget: ListView.builder(
-            itemCount: controller.dataList.length,
-            itemBuilder: (context, i) =>
-                OrderAcceptedWedget(orderModel: controller.dataList[i]),
+          widget: RefreshIndicator(
+            onRefresh: () => controller.viewOrders(),
+            child: ListView.builder(
+              itemCount: controller.dataList.length,
+              itemBuilder: (context, i) =>
+                  OrderAcceptedWedget(orderModel: controller.dataList[i]),
+            ),
           ),
         );
       }),

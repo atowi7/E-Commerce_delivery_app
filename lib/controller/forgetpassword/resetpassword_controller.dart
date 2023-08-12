@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseResetPasswordController extends GetxController {
-  openSucess();
+  opensuccess();
 }
 
 class ResetPasswordController extends BaseResetPasswordController {
@@ -37,7 +37,7 @@ class ResetPasswordController extends BaseResetPasswordController {
   }
 
   @override
-  openSucess() async {
+  opensuccess() async {
     if (formKey.currentState!.validate()) {
       if (password.text == repassword.text) {
         statusRequest = StatusRequest.loading;
@@ -45,22 +45,22 @@ class ResetPasswordController extends BaseResetPasswordController {
         var response = await resetPasswordData.postData(email!, password.text);
 
         statusRequest = handleData(response);
-        if (statusRequest == StatusRequest.sucess) {
-          if (response['status'] == 'sucess') {
-            Get.offNamed(AppRoute.sucessResetPassword);
+        if (statusRequest == StatusRequest.success) {
+          if (response['status'] == 'success') {
+            Get.offNamed(AppRoute.successResetPassword);
           } else {
-            Get.defaultDialog(title: 'ERROR', middleText: 'ERROR');
+            Get.defaultDialog(title: '88'.tr, middleText: '88'.tr);
             //statusRequest = StatusRequest.noDatafailure;
           }
         } else {
-          Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
-          statusRequest = StatusRequest.serverFailure;
+          Get.defaultDialog(title: '88'.tr, middleText: '89'.tr);
+          //statusRequest = StatusRequest.serverFailure;
         }
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'PASSWORDS NOT MATCH');
+        Get.defaultDialog(title: '88'.tr, middleText: '96'.tr);
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'VALIDATION ERROR');
+      // Get.defaultDialog(title: '88'.tr, middleText: '95'.tr);
     }
     update();
   }

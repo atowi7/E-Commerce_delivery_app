@@ -13,12 +13,12 @@ class OrderTrackingScreen extends StatelessWidget {
     Get.put(TrackingController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Tracking'),
+        title: Text('111'.tr),
       ),
       body: GetBuilder<TrackingController>(builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
-          widget: Column(
+          widget: Stack(
             children: [
               Expanded(
                 child: GoogleMap(
@@ -31,14 +31,19 @@ class OrderTrackingScreen extends StatelessWidget {
                   markers: controller.markers,
                 ),
               ),
-              MaterialButton(
-                color: AppColor.blue,
-                minWidth: 200,
-                onPressed: () {
-                  controller.doneDelivery();
-                },
-                child: Text('Done'),
-              ),
+              Positioned(
+                top: Get.size.height - 20,
+                left: Get.size.width / 2,
+                child: MaterialButton(
+                  color: AppColor.primaryColor,
+                  splashColor: AppColor.secondaryColor,
+                  onPressed: () {
+                    controller.doneDelivery();
+                  },
+                  child: Text('83'.tr,
+                      style: Theme.of(context).textTheme.labelLarge),
+                ),
+              )
             ],
           ),
         );

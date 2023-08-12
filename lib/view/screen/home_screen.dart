@@ -14,20 +14,21 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Orders'),
+        leading:const Icon(Icons.shopping_bag_outlined,size: 30,),
+        title: Text('36'.tr),
       ),
       body: GetBuilder<HomeScreenController>(builder: (controller) {
         return WillPopScope(
           onWillPop: () async {
             await Get.defaultDialog(
-              title: 'Warrning',
+              title: '30'.tr,
               titleStyle: Theme.of(context).textTheme.displayMedium,
-              middleText: 'Are you sure',
+              middleText: '31'.tr,
               middleTextStyle: Theme.of(context).textTheme.displaySmall,
               onConfirm: () => exit(0),
-              confirmTextColor: AppColor.blue,
-              cancelTextColor: AppColor.blue,
-              buttonColor: AppColor.white,
+              confirmTextColor: AppColor.primaryColor,
+              cancelTextColor: AppColor.primaryColor,
+              buttonColor: AppColor.forthColor,
               onCancel: () {},
             );
             return false;

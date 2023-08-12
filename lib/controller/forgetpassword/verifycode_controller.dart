@@ -29,16 +29,16 @@ class VerifycodeController extends BaseVerifycodeController {
     var response = await verifyCodeData.postData(email!, verifycode);
 
     statusRequest = handleData(response);
-    if (statusRequest == StatusRequest.sucess) {
-      if (response['status'] == 'sucess') {
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
         Get.offNamed(AppRoute.resetPassword, arguments: {'email': email});
       } else {
-        Get.defaultDialog(title: 'ERROR', middleText: 'VERIFY CODE ERROR');
+        Get.defaultDialog(title: '88'.tr, middleText: '97'.tr);
         //statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      Get.defaultDialog(title: 'ERROR', middleText: 'SERVER ERROR');
-      statusRequest = StatusRequest.serverFailure;
+      Get.defaultDialog(title: '88'.tr, middleText: '89'.tr);
+      //statusRequest = StatusRequest.serverFailure;
     }
 
     update();

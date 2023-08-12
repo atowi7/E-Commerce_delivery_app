@@ -6,10 +6,13 @@ class CustomTextBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: Theme.of(context).textTheme.displayMedium,
-      textAlign: TextAlign.center,
+    return Container(
+      margin: const EdgeInsets.only(top: 8),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.displayMedium,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

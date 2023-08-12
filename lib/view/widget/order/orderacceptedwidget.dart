@@ -18,28 +18,43 @@ class OrderAcceptedWedget extends GetView<OrdersAcceptedController> {
           Row(
             children: [
               Text(
-                'Order Number : ${orderModel.ordersId}',
-                style: Theme.of(context).textTheme.displayMedium,
+                '${'46'.tr} : ${orderModel.ordersId}',
+                style: Theme.of(context).textTheme.displayLarge,
               ),
               const Spacer(),
               Text(
                 Jiffy.parse(orderModel.ordersCreatedat!).fromNow(),
-                style: Theme.of(context).textTheme.displayMedium,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ],
           ),
-          const Divider(color: AppColor.blue),
-          Text('Order price : ${orderModel.ordersPrice}'),
-          Text('Order delivery price : ${orderModel.ordersDeliveryprice}\$'),
+          const Divider(color: AppColor.primaryColor, thickness: 2),
           Text(
-              'Order payment method : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}'),
+            '${'47'.tr} : ${orderModel.ordersPrice}',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
           Text(
-              'Order delivery type : ${controller.getDeliveryType(orderModel.ordersType!)}'),
+            '${'48'.tr} : ${orderModel.ordersDeliveryprice}\$',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
           Text(
-              'Order order status : ${controller.getStatus(orderModel.ordersStatus!)}'),
-          const Divider(color: AppColor.blue),
-          Text('Order total price : ${orderModel.ordersTotalprice}\$'),
-          const Divider(color: AppColor.blue),
+            '${'49'.tr} : ${controller.getPaymentMethod(orderModel.ordersPaymentmethod!)}',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          Text(
+            '${'50'.tr} : ${controller.getDeliveryType(orderModel.ordersType!)}',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          Text(
+            '${'51'.tr} : ${controller.getStatus(orderModel.ordersStatus!)}',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const Divider(color: AppColor.primaryColor, thickness: 2),
+          Text(
+            '${'52'.tr} : ${orderModel.ordersTotalprice}\$',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const Divider(color: AppColor.primaryColor, thickness: 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -48,16 +63,20 @@ class OrderAcceptedWedget extends GetView<OrdersAcceptedController> {
                     controller.doneDelivery(
                         orderModel.ordersId!, orderModel.ordersUserid!);
                   },
-                  color: AppColor.blue,
-                  child: Text('Done')),
+                  color: AppColor.primaryColor,
+                  splashColor: AppColor.secondaryColor,
+                  child: Text('83'.tr,
+                      style: Theme.of(context).textTheme.labelLarge)),
               MaterialButton(
                   onPressed: () {
                     Get.toNamed(AppRoute.ordersDetails, arguments: {
                       'orderModel': orderModel,
                     });
                   },
-                  color: AppColor.blue,
-                  child: Text('Details')),
+                  color: AppColor.primaryColor,
+                  splashColor: AppColor.secondaryColor,
+                  child: Text('53'.tr,
+                      style: Theme.of(context).textTheme.labelLarge)),
             ],
           ),
         ],

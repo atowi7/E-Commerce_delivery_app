@@ -44,6 +44,8 @@ dependencies:
   lottie: ^2.2.0
   flutter_svg: ^2.0.0+1
   firebase_core: ^2.5.0
+  firebase_auth: ^4.6.3
+  google_sign_in: ^6.1.4
   cloud_firestore: ^4.8.0
   firebase_messaging: ^14.3.0
   flutter_ringtone_player: ^3.2.0

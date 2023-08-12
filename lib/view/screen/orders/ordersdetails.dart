@@ -15,7 +15,7 @@ class OrderDetailsScreen extends StatelessWidget {
     Get.put(OrderDetialsController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Detail'),
+        title: Text('39'.tr),
       ),
       body: GetBuilder<OrderDetialsController>(builder: (controller) {
         return HandlingDataView(
@@ -26,32 +26,24 @@ class OrderDetailsScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Card(
+                  color: AppColor.forthColor,
                   child: Table(
                     children: [
-                      const TableRow(children: [
+                      TableRow(children: [
                         Text(
-                          'Product',
+                          '40'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.displayLarge,
                         ),
                         Text(
-                          'Quantity',
+                          '41'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.displayLarge,
                         ),
                         Text(
-                          'Price',
+                          '42'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.displayLarge,
                         ),
                       ]),
                       ...List.generate(
@@ -60,14 +52,17 @@ class OrderDetailsScreen extends StatelessWidget {
                           Text(
                             '${controller.dataList[index].proName}',
                             textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                           Text(
                             '${controller.dataList[index].prosCount}',
                             textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                           Text(
                             '${controller.dataList[index].prosPrice}',
                             textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                         ]),
                       ),
@@ -77,14 +72,16 @@ class OrderDetailsScreen extends StatelessWidget {
               ),
               Center(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Card(
+                    color: AppColor.forthColor,
                     child: Text(
-                      'Total Price ${controller.orderModel.ordersTotalprice}\$',
-                      style: const TextStyle(
-                        color: AppColor.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      '${'43'.tr} ${controller.orderModel.ordersTotalprice}\$',
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayLarge!
+                          .copyWith(color: AppColor.primaryColor),
                     ),
                   ),
                 ),
@@ -94,16 +91,27 @@ class OrderDetailsScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Card(
-                    child: ListTile(
-                      title: const Text(
-                        'Shipping Address',
-                        style: TextStyle(
-                          color: AppColor.blue,
-                          fontWeight: FontWeight.bold,
+                    color: AppColor.forthColor,
+                    child: Column(
+                      children: [
+                        Text(
+                          '44'.tr,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(color: AppColor.primaryColor),
                         ),
-                      ),
-                      subtitle: Text(
-                          '${controller.orderModel.addressCity} ${controller.orderModel.addressStreet}'),
+                        ListTile(
+                          title: Text(
+                            '${controller.orderModel.addressName}',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          subtitle: Text(
+                            '${controller.orderModel.addressCity} ${controller.orderModel.addressStreet}',
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -131,7 +139,7 @@ class OrderDetailsScreen extends StatelessWidget {
               if (controller.orderModel.ordersType == '0' &&
                   controller.orderModel.ordersStatus == '3')
                 CustomButton(
-                    title: 'Tracking',
+                    title: '54'.tr,
                     onPressed: () {
                       Get.toNamed(AppRoute.ordersTracking, arguments: {
                         'orderModel': controller.orderModel,

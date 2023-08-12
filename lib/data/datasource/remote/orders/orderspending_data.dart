@@ -11,11 +11,13 @@ class OrdersPendingData {
     return response.fold((l) => l, (r) => r);
   }
 
-  approveOrders(String orderId, String userId, String deliveryId) async {
+  approveOrders(String orderId, String userId, String deliveryId,
+      String deliveryName) async {
     var response = await crud.postData(AppLink.ordersApproval, {
       'ordersid': orderId,
       'userid': userId,
       'deliveryid': deliveryId,
+      'deliveryname': deliveryName,
     });
     return response.fold((l) => l, (r) => r);
   }

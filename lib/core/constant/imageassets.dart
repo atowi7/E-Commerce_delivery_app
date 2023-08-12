@@ -2,6 +2,7 @@ class ImageAssets {
   static const rootImages = 'assets/images';
   static const rootLottie = 'assets/lottie';
   static const logo = '$rootImages/logo.png';
+  static const googleLogo = '$rootImages/google_logo.png';
   static const onBoardingProductImg = '$rootLottie/search_product.json';
   static const onBoardingPaymentImg = '$rootLottie/payment.json';
   static const onBoardingOrderImg = '$rootLottie/tracking_order.json';

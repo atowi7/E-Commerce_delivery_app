@@ -12,15 +12,15 @@ class HomeScreenController extends BaseHomeScreenController {
   int currentPage = 0;
   List icons = [
     {
-      'title': 'Pendinging',
+      'title': '109'.tr,
       'icon': Icons.lock_clock_outlined,
     },
     {
-      'title': 'Accepted',
+      'title': '110'.tr,
       'icon': Icons.done,
     },
     {
-      'title': 'Setting',
+      'title': '117'.tr,
       'icon': Icons.settings,
     },
   ];

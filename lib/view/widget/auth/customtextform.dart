@@ -1,3 +1,4 @@
+import 'package:ecommerce_delivery_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextForm extends StatelessWidget {
@@ -24,7 +25,8 @@ class CustomTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 16),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
       child: TextFormField(
         keyboardType: isNumber ? TextInputType.number : TextInputType.text,
         obscureText: obscureText == null || false ? false : true,
@@ -35,7 +37,9 @@ class CustomTextForm extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 30),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: hintText,
-            suffixIcon: InkWell(onTap: onTapIcon, child: Icon(icon)),
+            suffixIcon: InkWell(
+                onTap: onTapIcon,
+                child: Icon(icon, color: AppColor.primaryColor)),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
               20,

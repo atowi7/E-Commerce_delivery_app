@@ -1,5 +1,6 @@
 import 'package:ecommerce_delivery_app/controller/auth/signup_controller.dart';
 import 'package:ecommerce_delivery_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_delivery_app/core/constant/color.dart';
 import 'package:ecommerce_delivery_app/core/function/exitapp_alert.dart';
 import 'package:ecommerce_delivery_app/core/function/input_validation.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/custombutton.dart';
@@ -18,8 +19,10 @@ class SignupScreen extends StatelessWidget {
     Get.put(SignupController());
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text('13'.tr),
+        title: Text(
+          '4'.tr,
+        ),
+        leading: const Icon(Icons.person_2_rounded),
       ),
       body: WillPopScope(
         onWillPop: () async {
@@ -31,66 +34,74 @@ class SignupScreen extends StatelessWidget {
             statusRequest: controller.statusRequest,
             widget: Form(
               key: controller.formKey,
-              child: ListView(
-                children: [
-                  CustomTextTitle(title: '13'.tr),
-                  CustomTextBody(title: '14'.tr),
-                  CustomTextForm(
-                    labelText: '15'.tr,
-                    hintText: '15'.tr,
-                    icon: Icons.person,
-                    isNumber: false,
-                    controller: controller.userName,
-                    validator: (val) {
-                      return inputValidation('username', val!, 10, 50);
-                    },
-                    onTapIcon: controller.showPassword(),
-                  ),
-                  CustomTextForm(
-                    labelText: '16'.tr,
-                    hintText: '16'.tr,
-                    icon: Icons.email,
-                    isNumber: false,
-                    controller: controller.email,
-                    validator: (val) {
-                      return inputValidation('email', val!, 10, 50);
-                    },
-                  ),
-                  CustomTextForm(
-                    labelText: '17'.tr,
-                    hintText: '17'.tr,
-                    icon: Icons.phone,
-                    isNumber: true,
-                    controller: controller.phone,
-                    validator: (val) {
-                      return inputValidation('phone', val!, 10, 50);
-                    },
-                  ),
-                  CustomTextForm(
-                    labelText: '18'.tr,
-                    hintText: '18'.tr,
-                    icon: Icons.lock,
-                    isNumber: false,
-                    controller: controller.password,
-                    obscureText: controller.isPassHidden,
-                    validator: (val) {
-                      return inputValidation('password', val!, 10, 50);
-                    },
-                  ),
-                  CustomButton(
-                    title: '13'.tr,
-                    onPressed: () {
-                      controller.openSignupVerfication();
-                    },
-                  ),
-                  CustomTextAuth(
-                    t1: '23'.tr,
-                    t2: '19'.tr,
-                    onTap: () {
-                      controller.openLogin();
-                    },
-                  ),
-                ],
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: ListView(
+                  children: [
+                    const Icon(
+                      Icons.person_2_rounded,
+                      size: 200,
+                      color: AppColor.primaryColor,
+                    ),
+                    CustomTextTitle(title: '4'.tr),
+                    CustomTextBody(title: '5'.tr),
+                    CustomTextForm(
+                      labelText: '6'.tr,
+                      hintText: '6'.tr,
+                      icon: Icons.person,
+                      isNumber: false,
+                      controller: controller.userName,
+                      validator: (val) {
+                        return inputValidation('username', val!, 5, 20);
+                      },
+                      onTapIcon: controller.showPassword(),
+                    ),
+                    CustomTextForm(
+                      labelText: '7'.tr,
+                      hintText: '7'.tr,
+                      icon: Icons.email,
+                      isNumber: false,
+                      controller: controller.email,
+                      validator: (val) {
+                        return inputValidation('email', val!, 10, 50);
+                      },
+                    ),
+                    // CustomTextForm(
+                    //   labelText: '8'.tr,
+                    //   hintText: '8'.tr,
+                    //   icon: Icons.phone,
+                    //   isNumber: true,
+                    //   controller: controller.phone,
+                    //   validator: (val) {
+                    //     return inputValidation('phone', val!, 10, 50);
+                    //   },
+                    // ),
+                    CustomTextForm(
+                      labelText: '9'.tr,
+                      hintText: '9'.tr,
+                      icon: Icons.lock,
+                      isNumber: false,
+                      controller: controller.password,
+                      obscureText: controller.isPassHidden,
+                      validator: (val) {
+                        return inputValidation('password', val!, 8, 20);
+                      },
+                    ),
+                    CustomButton(
+                      title: '4'.tr,
+                      onPressed: () {
+                        controller.openSignupVerfication();
+                      },
+                    ),
+                    CustomTextAuth(
+                      t1: '14'.tr,
+                      t2: '10'.tr,
+                      onTap: () {
+                        controller.openLogin();
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );

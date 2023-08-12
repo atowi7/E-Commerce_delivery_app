@@ -37,8 +37,8 @@ class OrdersAcceptedController extends BaseOrdersAcceptedController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => OrderModel.fromJson(e)));
@@ -59,14 +59,15 @@ class OrdersAcceptedController extends BaseOrdersAcceptedController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
-        Get.snackbar('Warring', 'The ordre is deliverd');
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        Get.snackbar('30'.tr, '98'.tr);
         refreshPage();
       } else {
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
+      Get.snackbar('88'.tr, '89'.tr);
       statusRequest = StatusRequest.serverFailure;
     }
     update();
@@ -75,33 +76,33 @@ class OrdersAcceptedController extends BaseOrdersAcceptedController {
   @override
   String getDeliveryType(String val) {
     if (val == '0') {
-      return 'delivery';
+      return '99'.tr;
     } else {
-      return 'Myself';
+      return '100'.tr;
     }
   }
 
   @override
   String getPaymentMethod(String val) {
     if (val == '0') {
-      return 'cash';
+      return '101'.tr;
     } else {
-      return 'card';
+      return '102'.tr;
     }
   }
 
   @override
   String getStatus(String val) {
     if (val == '0') {
-      return 'waitting for approval';
+      return '103'.tr;
     } else if (val == '1') {
-      return 'preparing';
+      return '104'.tr;
     } else if (val == '2') {
-      return 'On the way';
+      return '105'.tr;
     } else if (val == '3') {
-      return 'Ready to pickup by delivery service';
+      return '106'.tr;
     } else {
-      return 'Archive';
+      return '107'.tr;
     }
   }
 

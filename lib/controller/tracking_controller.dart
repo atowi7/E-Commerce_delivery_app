@@ -6,6 +6,7 @@ import 'package:ecommerce_delivery_app/core/constant/route.dart';
 import 'package:ecommerce_delivery_app/core/function/getdecodepolyline.dart';
 import 'package:ecommerce_delivery_app/core/service/services.dart';
 import 'package:ecommerce_delivery_app/data/model/ordermodel.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -36,6 +37,8 @@ class TrackingController extends BaseTrackingController {
 
   Set<Marker> markers = {};
 
+  // BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+
   Set<Polyline> polylineSet = {};
 
   StreamSubscription<Position>? positionStream;
@@ -49,7 +52,7 @@ class TrackingController extends BaseTrackingController {
 
   @override
   void onInit() {
-    statusRequest = StatusRequest.sucess;
+    statusRequest = StatusRequest.success;
     orderModel = Get.arguments['orderModel'];
 
     getCurrentPosition();
@@ -63,23 +66,27 @@ class TrackingController extends BaseTrackingController {
   getCurrentPosition() async {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (serviceEnabled == false) {
-      Get.snackbar('NOTFY', 'Please enable the location');
+      Get.snackbar('30'.tr, '122'.tr);
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        Get.snackbar('NOTFY', 'Please enable the location to use the map');
+        Get.snackbar('30'.tr, '123'.tr);
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      Get.snackbar('NOTFY', 'You can not use the map without your location');
+      Get.snackbar('30'.tr, '124'.tr);
     }
+
+    // currentLat = 41.393529;
+    // currentLong = -72.811514;
+
     positionStream =
         Geolocator.getPositionStream().listen((Position? position) {
-      currentLat = 51.7519;
-      currentLong = -1.2578;
+      currentLat = position!.latitude;
+      currentLong = position.longitude;
 
       if (mapcontroller != null) {
         mapcontroller!.animateCamera(
@@ -88,8 +95,10 @@ class TrackingController extends BaseTrackingController {
 
       markers.removeWhere((element) => element.markerId.value == 'current');
       markers.add(Marker(
-          markerId: const MarkerId('current'),
-          position: LatLng(currentLat!, currentLong!)));
+        markerId: const MarkerId('current'),
+        position: LatLng(currentLat!, currentLong!),
+        infoWindow: const InfoWindow(title: 'Me'),
+      ));
 
       update();
     });
@@ -97,30 +106,42 @@ class TrackingController extends BaseTrackingController {
 
   @override
   getDestPosition() {
-    destLat = 50.8429;
-    destLong = -0.1313;
+    destLat = double.parse(orderModel.addressLat!);
+    destLong = double.parse(orderModel.addressLong!);
+    // destLat = 41.311725;
+    // destLong = -72.740211;
 
     kGooglePlex = CameraPosition(
       target: LatLng(destLat!, destLong!),
       zoom: 15,
     );
+
+    // BitmapDescriptor.fromAssetImage(
+    //         const ImageConfiguration(), 'assets/images/google_logo.png')
+    //     .then((icon) {
+    //   markerIcon = icon;
+    // });
+
     markers.add(Marker(
-        markerId: const MarkerId('destination'),
-        position: LatLng(destLat!, destLong!)));
+      markerId: const MarkerId('destination'),
+      position: LatLng(destLat!, destLong!),
+      // icon: markerIcon,
+      infoWindow: const InfoWindow(title: 'Order'),
+    ));
   }
 
   @override
   getPolyline() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     polylineSet =
         await getDecodePolyline(currentLat!, currentLong!, destLat!, destLong!);
   }
 
   @override
   sendLocationToUser() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
-    timer = Timer.periodic(Duration(seconds: 10), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 10), (timer) {
       FirebaseFirestore.instance
           .collection('delivery')
           .doc(orderModel.ordersId)
@@ -133,14 +154,6 @@ class TrackingController extends BaseTrackingController {
   }
 
   @override
-  void onClose() {
-    mapcontroller!.dispose();
-    positionStream!.cancel();
-    timer!.cancel();
-    super.onClose();
-  }
-
-  @override
   doneDelivery() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -148,5 +161,13 @@ class TrackingController extends BaseTrackingController {
         orderModel.ordersId!, orderModel.ordersUserid!);
 
     Get.offAllNamed(AppRoute.homePage);
+  }
+
+  @override
+  void onClose() {
+    mapcontroller!.dispose();
+    positionStream!.cancel();
+    timer!.cancel();
+    super.onClose();
   }
 }

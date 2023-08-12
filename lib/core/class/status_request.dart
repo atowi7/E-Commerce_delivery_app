@@ -1,7 +1,7 @@
 enum StatusRequest {
   none,
   loading,
-  sucess,
+  success,
   noDatafailure,
   serverFailure,
   offlineFailure,

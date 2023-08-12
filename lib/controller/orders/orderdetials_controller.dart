@@ -42,7 +42,7 @@ class OrderDetialsController extends BaseOrderDetialsController {
         zoom: 15,
       );
       markers.add(Marker(
-          markerId: const MarkerId('m1'),
+          markerId: MarkerId(orderModel.ordersId!),
           position: LatLng(double.parse(orderModel.addressLat!),
               double.parse(orderModel.addressLong!))));
     }
@@ -58,8 +58,8 @@ class OrderDetialsController extends BaseOrderDetialsController {
 
     statusRequest = handleData(response);
 
-    if (StatusRequest.sucess == statusRequest) {
-      if (response['status'] == 'sucess') {
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
         List data = response['data'];
         dataList.clear();
         dataList.addAll(data.map((e) => OrdersDetailsModel.fromJson(e)));
@@ -67,7 +67,7 @@ class OrderDetialsController extends BaseOrderDetialsController {
         statusRequest = StatusRequest.noDatafailure;
       }
     } else {
-      // statusRequest = StatusRequest.serverFailure;
+      statusRequest = StatusRequest.serverFailure;
     }
     update();
   }

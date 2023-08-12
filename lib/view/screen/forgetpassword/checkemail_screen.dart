@@ -1,5 +1,6 @@
 import 'package:ecommerce_delivery_app/controller/forgetpassword/checkemail_controller.dart';
 import 'package:ecommerce_delivery_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_delivery_app/core/constant/color.dart';
 import 'package:ecommerce_delivery_app/core/function/input_validation.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/custombutton.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/customtextbody.dart';
@@ -17,8 +18,7 @@ class CheckemailScreen extends StatelessWidget {
     Get.put(CheckEmailController());
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Check Email'),
+        title: Text('22'.tr),
       ),
       body: GetBuilder<CheckEmailController>(builder: (controller) {
         return HandlingDataReqest(
@@ -27,14 +27,17 @@ class CheckemailScreen extends StatelessWidget {
             key: controller.formKey,
             child: ListView(
               children: [
-                const Logo(),
-                const CustomTextTitle(title: 'Check Email'),
-                const CustomTextBody(
-                    title:
-                        'Please Enter your email to recieve the verfication code'),
+                // const Logo(),
+                const Icon(
+                  Icons.email_rounded,
+                  size: 200,
+                  color: AppColor.primaryColor,
+                ),
+                CustomTextTitle(title: '22'.tr),
+                CustomTextBody(title: '23'.tr),
                 CustomTextForm(
-                  labelText: 'Email',
-                  hintText: 'Email',
+                  labelText: '7'.tr,
+                  hintText: '7'.tr,
                   icon: Icons.email,
                   isNumber: false,
                   controller: controller.email,
@@ -43,9 +46,15 @@ class CheckemailScreen extends StatelessWidget {
                   },
                 ),
                 CustomButton(
-                  title: 'Check',
+                  title: '24'.tr,
                   onPressed: () {
                     controller.openVerfication();
+                  },
+                ),
+                CustomButton(
+                  title: '127'.tr,
+                  onPressed: () {
+                    controller.backTologin();
                   },
                 ),
               ],

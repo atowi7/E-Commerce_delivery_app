@@ -1,5 +1,6 @@
 import 'package:ecommerce_delivery_app/controller/auth/signupverfication_controller.dart';
 import 'package:ecommerce_delivery_app/core/class/handlingdataview.dart';
+import 'package:ecommerce_delivery_app/core/constant/color.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/customtextbody.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/customtexttitle.dart';
 import 'package:ecommerce_delivery_app/view/widget/auth/logo.dart';
@@ -16,32 +17,46 @@ class SignupVerficationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Emial Verfication'),
+        title: Text('15'.tr),
       ),
       body: GetBuilder<SignupVerficationController>(builder: (controller) {
         return HandlingDataReqest(
           statusRequest: controller.statusRequest,
           widget: ListView(
             children: [
-              const Logo(),
-              CustomTextTitle(title: 'Check Your Email :${controller.email}'),
-              const CustomTextBody(title: 'Please Enter the verfication code'),
+              // const Logo(),
+              const Icon(
+                Icons.person_2_rounded,
+                size: 200,
+                color: AppColor.primaryColor,
+              ),
+              CustomTextTitle(title: '16'.tr),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              CustomTextBody(title: '${'17'.tr} in ${controller.email}'),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
               OtpTextField(
                 numberOfFields: 6,
                 showFieldAsBox: true,
                 onSubmit: (value) {
-                  controller.openSucess(value);
+                  controller.opensuccess(value);
                 },
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               InkWell(
                 onTap: () {
                   controller.resend();
                 },
                 child: Center(
-                    child: Text(
-                  'resend',
-                  style: Theme.of(context).textTheme.displaySmall,
-                )),
+                    child: Text('18'.tr,
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              color: AppColor.primaryColor,
+                            ))),
               )
             ],
           ),

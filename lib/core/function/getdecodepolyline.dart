@@ -1,23 +1,25 @@
 import 'dart:convert';
 
-import 'package:flutter/Material.dart';
+import 'package:ecommerce_delivery_app/core/constant/color.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
-Future getDecodePolyline(
-    double lat, double long, double destLat, double destLong) async {
-
+Future getDecodePolyline(double currentLat, double currentLong, double destLat,
+    double destLong) async {
   Set<Polyline> polylineSet = {};
   List<LatLng> polylineCoor = [];
   PolylinePoints polylinePoints = PolylinePoints();
+
   String url =
-      "https://maps.googleapis.com/maps/api/directions/json?origin=$lat,$long&destination=$destLat,$destLong&key=AIzaSyCbPIA-wwzTS6SdhGKNlhiZRjAkyJHFBKY";
+      "https://maps.googleapis.com/maps/api/directions/json?origin=$currentLat,$currentLong&destination=$destLat,$destLong&key=AIzaSyBaRyQ3uakv3VUB8FxMpjMYNp2F1z2K-R4";
 
   var response = await http.post(Uri.parse(url));
-  print('Current Location : $lat , $long');
-  print('Destination Location : $destLat , $destLong');
-  print('response body : ${response.body}');
+
+  Get.snackbar('current', '$currentLat / $currentLong');
+  Get.snackbar('dest', '$destLat / $destLong');
+
   var responsebody = jsonDecode(response.body);
 
   print(responsebody);
@@ -34,7 +36,7 @@ Future getDecodePolyline(
   Polyline polyline = Polyline(
       polylineId: const PolylineId('p1'),
       points: polylineCoor,
-      color: Colors.red,
+      color: AppColor.primaryColor,
       width: 5);
 
   polylineSet.add(polyline);

@@ -10,7 +10,7 @@ class AppRoute {
   static const String checkemail = '/checkemail';
   static const String verfication = '/verfication';
   static const String resetPassword = '/resetpassword';
-  static const String sucessResetPassword = '/sucessresetpassword';
+  static const String successResetPassword = '/successresetpassword';
 
   //Home
   static const String homePage = '/homepage';
